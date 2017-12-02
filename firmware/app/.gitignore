@@ -1,0 +1,10 @@
+/RVMDK/Output
+/Debug
+/Release
+/EWARM/Debug
+/settings
+/.settings
+/build
+*.pyc
+*.old
+*.dblite

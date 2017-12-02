@@ -1,0 +1,4 @@
+config BOARD_ART_6LOWPAN
+    bool 
+    select ARCH_ARM_CORTEX_M4
+    default y
