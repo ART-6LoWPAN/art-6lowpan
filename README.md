@@ -1,2 +1,19 @@
-# art-6lowpan
-ART-6LoWPAN project source code, design, tutorial and others docs.
+# ART-6LoWPAN 开源项目
+
+
+## 功能特点
+
+- 采用 6LoWPAN 协议，节点支持 mesh 组网，并支持 IPv6 
+- Sub-1G 频段，传输距离远，穿墙性能更好
+- 兼容 Arduino 接口，灵活接入更多传感器
+- 基于 RT-Thread 3.0 物联网操作系统，丰富的组件及设备驱动，开发更容易
+- 支持动态运行 Python 脚本，极强的可玩性
+- 软件代码（Eclipse/IAR/Keil）、硬件设计资料全部开源，量产级要求，高质量开源
+
+##  应用场景
+
+- 远距离、多节点数据采集
+- 无线信号穿墙性能要求较高的设备间通信
+- 支持 Sub-1G 频段的多功能网关
+
+## 其余文档马上就来……
