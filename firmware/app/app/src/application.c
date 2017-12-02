@@ -7,13 +7,11 @@
 #include <elog.h>
 #include <elog_flash.h>
 #include <easyflash.h>
-#include <ef_types.h>
 #include <delay_conf.h>
 #include <cpuusage.h>
 #include <utils.h>
 #include <shell.h>
 #include <finsh.h>
-#include <s2j.h>
 #include <cm_backtrace.h>
 #include <dfs_elm.h>
 #include <dfs_fs.h>
@@ -98,12 +96,7 @@ void sys_init_thread(void* parameter){
 
     /* 初始化 EasyFlash 模块 */
     easyflash_init();
-    /* 初始化 EasyFlash 的 types 插件，里面包括 struct2json 库*/
-    S2jHook s2jHook = {
-            .free_fn = rt_free,
-            .malloc_fn = (void *(*)(size_t))rt_malloc,
-    };
-    ef_types_init(&s2jHook);
+
     /* 初始化日志系统 */
     elog_init();
     elog_set_fmt(ELOG_LVL_ASSERT, ELOG_FMT_ALL & ~ELOG_FMT_P_INFO);
