@@ -5,6 +5,14 @@
 /settings
 /.settings
 /build
-*.pyc
 *.old
+*.map
+JLink*.*
+*.uvgui.*
+*.uvguix.*
+project.*
 *.dblite
+*.out
+*.o
+*.pyc
+*.log
