@@ -1,0 +1,10 @@
+si 1
+exec device=stm32f405rg
+speed auto
+r
+h
+loadbin ../bootloader.bin 0x08000000
+loadbin ../application.bin 0x08010000
+r
+g
+q
