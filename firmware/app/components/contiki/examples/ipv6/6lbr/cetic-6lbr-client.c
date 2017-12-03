@@ -45,6 +45,10 @@
 #define DEBUG 0
 #include "net/ip/uip-debug.h"
 /*---------------------------------------------------------------------------*/
+#ifndef CETIC_6LBR_CLIENT_VERSION
+#define CETIC_6LBR_CLIENT_VERSION                      "0.0.1"
+#endif
+
 #ifndef CETIC_6LBR_NODE_INFO_PORT
 #define CETIC_6LBR_NODE_INFO_PORT 3000
 #endif
@@ -179,6 +183,7 @@ PROCESS_THREAD(cetic_6lbr_client_process, ev, data)
   PROCESS_BEGIN();
 
   printf("6LBR Client Process\r\n");
+  printf("version : %s \r\n", CETIC_6LBR_CLIENT_VERSION);
 
   memset(&dest_addr, 0, sizeof(uip_ipaddr_t));
 

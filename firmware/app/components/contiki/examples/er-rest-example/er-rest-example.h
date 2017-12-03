@@ -31,6 +31,14 @@
 
 #include "contiki.h"
 
+#ifndef ER_EXAMPLE_NAME
+#define ER_EXAMPLE_CLIENT
+#endif
+
+#ifdef ER_EXAMPLE_CLIENT
 PROCESS_NAME(er_example_client);
+#else
+PROCESS_NAME(er_example_server);
+#endif
 
 #endif /* _ER_REST_EXAMPLE_H_ */
