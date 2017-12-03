@@ -138,9 +138,7 @@
 
 #define RT_USING_LIBC
 /* RT_USING_PTHREADS is not set */
-#define RT_USING_POSIX
-/* RT_USING_POSIX_MMAP is not set */
-/* RT_USING_POSIX_TERMIOS is not set */
+/* RT_USING_POSIX is not set */
 
 /* Network stack */
 
@@ -159,6 +157,11 @@
 /* VBUS(Virtual Software BUS) */
 
 /* RT_USING_VBUS is not set */
+
+/* Utilities */
+
+/* RT_USING_LOGTRACE is not set */
+#define RT_USING_RYM
 
 /* RT-Thread online packages */
 
