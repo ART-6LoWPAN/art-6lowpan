@@ -1,0 +1,17 @@
+from building import *
+
+# get current directory
+cwd     = GetCurrentDir()
+# The set of source files associated with this SConscript file.
+src     = Glob('er-coap/*.c')
+src    += Glob('rest-engine/*.c')
+src    += Glob('shell/*.c')
+src    += Glob('slip-cmd/*.c')
+
+path    = [cwd + '/slip-cmd']
+path   += [cwd + '/er-coap']
+path   += [cwd + '/rest-engine']
+
+group = DefineGroup('Contiki', src, depend = [''], CPPPATH = path)
+
+Return('group')

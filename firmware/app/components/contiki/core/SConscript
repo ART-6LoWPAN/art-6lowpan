@@ -1,0 +1,28 @@
+from building import *
+
+# get current directory
+cwd     = GetCurrentDir()
+# The set of source files associated with this SConscript file.
+src     = Glob('dev/*.c')
+src    += Glob('lib/*.c')
+src.remove(Glob('lib/random.c')[0])
+src    += Glob('lib/strncasecmp/*.c')
+src    += Glob('net/*.c')
+src    += Glob('net/ip/*.c')
+src    += Glob('net/ipv6/*.c')
+src    += Glob('net/ipv6/multicast/*.c')
+src    += Glob('net/llsec/*.c')
+src    += Glob('net/llsec/noncoresec/*.c')
+src    += Glob('net/mac/*.c')
+src    += Glob('net/mac/contikimac/*.c')
+src    += Glob('net/mac/sicslowmac/*.c')
+src    += Glob('net/rpl/*.c')
+src    += Glob('sys/*.c')
+
+path    = [cwd]
+path   += [cwd + '/net']
+path   += [cwd + '/net/ip']
+
+group = DefineGroup('Contiki', src, depend = [''], CPPPATH = path)
+
+Return('group')

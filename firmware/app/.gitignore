@@ -16,3 +16,5 @@ project.*
 *.o
 *.pyc
 *.log
+*.bin
+*.axf

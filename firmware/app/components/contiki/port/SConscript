@@ -1,0 +1,21 @@
+from building import *
+import rtconfig
+
+# get current directory
+cwd     = GetCurrentDir()
+# The set of source files associated with this SConscript file.
+src     = Glob('*.c')
+
+path    = [cwd]
+path   += [cwd + '/../']
+
+CCFLAGS = ''
+
+if rtconfig.CROSS_TOOL == 'gcc':
+    CCFLAGS += ' -include' + cwd + '/project-conf.h'
+elif rtconfig.CROSS_TOOL == 'iar':
+    CCFLAGS += '--preinclude ' + cwd + '/project-conf.h'
+
+group = DefineGroup('Contiki', src, depend = [''], CPPPATH = path, CCFLAGS = CCFLAGS)
+
+Return('group')
