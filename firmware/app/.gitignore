@@ -18,3 +18,5 @@ project.*
 *.log
 *.bin
 *.axf
+*.dep
+*.ewd

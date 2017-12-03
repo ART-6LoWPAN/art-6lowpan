@@ -25,8 +25,12 @@ path = [cwd + '/STM32F4xx_StdPeriph_Driver/inc',
     cwd + '/CMSIS/Device/ST/STM32F4xx/Include',
     cwd + '/CMSIS/Include']
 
-#CPPDEFINES = ['USE_STDPERIPH_DRIVER', rtconfig.STM32_TYPE]
-CPPDEFINES = ['USE_STDPERIPH_DRIVER']
+CPPDEFINES  = ['USE_STDPERIPH_DRIVER']
+CPPDEFINES += ['STM32F40_41xxx']
+CPPDEFINES += ['USE_FULL_ASSERT']
+CPPDEFINES += ['HSE_VALUE=8000000']
+CPPDEFINES += ['PLL_M=8']
+
 group = DefineGroup('STM32_StdPeriph', src, depend = [''], CPPPATH = path, CPPDEFINES = CPPDEFINES)
 
 Return('group')

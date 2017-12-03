@@ -13,17 +13,17 @@ if os.getenv('RTT_ROOT'):
 # cross_tool provides the cross compiler
 # EXEC_PATH is the compiler execute path, for example, CodeSourcery, Keil MDK, IAR
 if  CROSS_TOOL == 'gcc':
-    PLATFORM 	= 'gcc'
-    EXEC_PATH 	= r'C:\Users\james\MentorGraphics\Sourcery_CodeBench_Lite_for_ARM_EABI\bin'
+    PLATFORM   = 'gcc'
+    if os.getenv('RTT_EXEC_PATH'):
+        EXEC_PATH = os.getenv('RTT_EXEC_PATH')
+    else :
+        EXEC_PATH = r'C:\eclipse_gcc_arm\tools\GNU_Tools_ARM_Embedded\6_2017q2\bin'
 elif CROSS_TOOL == 'keil':
-    PLATFORM 	= 'armcc'
-    EXEC_PATH 	= r'C:/Keil_v5'
+    PLATFORM    = 'armcc'
+    EXEC_PATH   = r'C:/Keil_v5'
 elif CROSS_TOOL == 'iar':
     PLATFORM    = 'iar'
     EXEC_PATH   = r'C:\Program Files\IAR Systems\Embedded Workbench 7.4'
-
-if os.getenv('RTT_EXEC_PATH'):
-	EXEC_PATH = os.getenv('RTT_EXEC_PATH')
 
 BUILD = 'debug'
 STM32_TYPE = 'STM32F405xx'
@@ -59,7 +59,7 @@ if PLATFORM == 'gcc':
 
     M_CFLAGS = CFLAGS + ' -mlong-calls  -Dsourcerygxx -O0 -fPIC '
     M_LFLAGS = DEVICE + ' -Wl,-z,max-page-size=0x4 -shared -fPIC -e main -nostdlib'
-	
+    
 elif PLATFORM == 'armcc':
     # toolchains
     CC = 'armcc'
@@ -94,7 +94,7 @@ elif PLATFORM == 'iar':
     LINK = 'ilinkarm'
     TARGET_EXT = 'out'
 
-    DEVICE = ' -DSTM32F40_41xxx -DUSE_FULL_ASSERT -DUSE_STDPERIPH_DRIVER -DHSE_VALUE=8000000 -DPLL_M=8'
+    DEVICE = ''
 
     CFLAGS = DEVICE
     CFLAGS += ' --diag_suppress Pa050'

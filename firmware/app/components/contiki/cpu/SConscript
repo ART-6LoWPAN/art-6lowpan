@@ -8,12 +8,12 @@ src     = Glob('*.c')
 
 path    = [cwd]
 
-if rtconfig.PLATFORM == 'iar':
-	LIBS = Glob('radio/*_iar.a')
-elif rtconfig.PLATFORM == 'gcc':
-	LIBS = Glob('radio/*_gcc.a')
+if rtconfig.PLATFORM == 'gcc':
+	LIBS = ['radio_si446x_0.1.1_armcm4_gcc']
+elif rtconfig.PLATFORM == 'iar':
+	LIBS = ['libradio_si446x_0.1.1_armcm4_iar']
 elif rtconfig.PLATFORM == 'armcc':
-	LIBS = Glob('radio/*_armcc.a')
+	LIBS = ['radio_si446x_0.1.1_armcm4_keil']
 
 LIBPATH = [cwd + '/radio']
 

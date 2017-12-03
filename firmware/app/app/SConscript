@@ -6,7 +6,7 @@ from building import *
 cwd = GetCurrentDir()
 
 src	= Glob('src/*.c')
-CPPPATH = [cwd + '/inc']
+CPPPATH = [cwd + '/inc', str(Dir('#'))]
 
 CPPDEFINES = ['DEBUG']
 group = DefineGroup('Applications', src, depend = [''], CPPPATH = CPPPATH, CPPDEFINES = CPPDEFINES)

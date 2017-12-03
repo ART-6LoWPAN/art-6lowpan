@@ -14,7 +14,7 @@ CCFLAGS = ''
 if rtconfig.CROSS_TOOL == 'gcc':
     CCFLAGS += ' -include' + cwd + '/project-conf.h'
 elif rtconfig.CROSS_TOOL == 'iar':
-    CCFLAGS += '--preinclude ' + cwd + '/project-conf.h'
+    CCFLAGS += ' --preinclude ' + cwd + '/project-conf.h'
 
 group = DefineGroup('Contiki', src, depend = [''], CPPPATH = path, CCFLAGS = CCFLAGS)
 
