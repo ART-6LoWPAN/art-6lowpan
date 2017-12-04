@@ -47,7 +47,11 @@
 /* RT_USING_INTERRUPT_INFO is not set */
 #define RT_USING_CONSOLE
 #define RT_CONSOLEBUF_SIZE 1024
+#if CONTIKI_SLIP_RAIDO
+#define RT_CONSOLE_DEVICE_NAME "uart2"
+#else
 #define RT_CONSOLE_DEVICE_NAME "uart1"
+#endif
 /* RT_USING_MODULE is not set */
 #define ARCH_ARM
 #define ARCH_ARM_CORTEX_M

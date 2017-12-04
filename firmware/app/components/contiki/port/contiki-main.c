@@ -165,13 +165,15 @@ void contiki_init(void) {
     autostart_start(autostart_processes);
 #endif /* RAW_RADIO_TEST */
 
+#if COAP_ENABLE
 	/* start coap */
 #include <examples/er-rest-example/er-rest-example.h>
-#ifdef ER_EXAMPLE_CLIENT
-	process_start(&er_example_client, NULL);
-#else
+#if COAP_SERVER_ENABLE
 	process_start(&er_example_server, NULL);
-#endif
+#else
+	process_start(&er_example_client, NULL);
+#endif /* COAP_SERVER_ENABLE */
+#endif /* COAP_ENABLE */
 
     rt_thread_t thread = rt_thread_create("contiki_main", contiki_main_thread_entry, NULL, 2048, RT_THREAD_PRIORITY_MAX - 2, 9);
     if (thread) {
