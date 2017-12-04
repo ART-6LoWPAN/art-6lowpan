@@ -104,11 +104,11 @@
 #endif /* CONTIKI_SLIP_RAIDO */
 /*---------------------------------------------------------------------------*/
 /* CoAP */
-#define COAP_ENABLE                           1
 #define COAP_SERVER_ENABLE                    1
-#if COAP_ENABLE
-    #define REST                              REGISTERED_ENGINE_ERBIUM
-#endif /* COAP_ENABLE */
+#define COAP_CLIENT_ENABLE                    0
+#if (COAP_SERVER_ENABLE || COAP_CLIENT_ENABLE)
+	#define REST                              REGISTERED_ENGINE_ERBIUM
+#endif
 
 #endif /* PROJECT_CONF_H_ */
 /*---------------------------------------------------------------------------*/

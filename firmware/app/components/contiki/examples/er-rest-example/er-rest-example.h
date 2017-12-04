@@ -31,10 +31,7 @@
 
 #include "contiki.h"
 
-#if COAP_SERVER_ENABLE
 PROCESS_NAME(er_example_server);
-#else
 PROCESS_NAME(er_example_client);
-#endif /* COAP_SERVER_ENABLE */
 
 #endif /* _ER_REST_EXAMPLE_H_ */
