@@ -146,6 +146,8 @@ void sys_init_thread(void* parameter){
         log_e("File System initialization failed!");
     }
 
+	log_i("Firmware version is %s ", SOFTWARE_VERSION);
+
     extern void contiki_init(void);
     contiki_init();
 
