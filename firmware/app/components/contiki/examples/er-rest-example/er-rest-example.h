@@ -31,6 +31,7 @@
 
 #include "contiki.h"
 
+PROCESS_NAME(er_example_server);
 PROCESS_NAME(er_example_client);
 
 #endif /* _ER_REST_EXAMPLE_H_ */
