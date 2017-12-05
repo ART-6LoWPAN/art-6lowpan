@@ -22,7 +22,7 @@
  * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  *
- * Function: Portable interface for stm32f4xx platform.
+ * Function: Portable interface for SFUD library.
  * Created on: 2015-01-16
  */
 

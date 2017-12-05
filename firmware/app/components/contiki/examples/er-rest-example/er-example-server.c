@@ -36,18 +36,23 @@
  *      Matthias Kovatsch <kovatsch@inf.ethz.ch>
  */
 
+#define LOG_TAG              "coap_example"
+#define LOG_LVL              ELOG_LVL_INFO
+
+#include <elog.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "contiki.h"
-#include "contiki-net.h"
+#include <contiki.h>
+#include <contiki-net.h>
 #include "rest-engine.h"
 
 #if PLATFORM_HAS_BUTTON
 #include "dev/button-sensor.h"
 #endif
 
-#define DEBUG 1
+#undef DEBUG
+#define DEBUG 0
 #if DEBUG
 #include <stdio.h>
 #define PRINTF(...) printf(__VA_ARGS__)
@@ -101,7 +106,6 @@ extern resource_t res_sht11;
 */
 
 PROCESS(er_example_server, "Erbium Example Server");
-//AUTOSTART_PROCESSES(&er_example_server);
 
 PROCESS_THREAD(er_example_server, ev, data)
 {
@@ -109,23 +113,22 @@ PROCESS_THREAD(er_example_server, ev, data)
 
   PROCESS_PAUSE();
 
-  PRINTF("Starting Erbium Example Server\n");
-
 #ifdef RF_CHANNEL
-  PRINTF("RF channel: %u\n", RF_CHANNEL);
+  log_d("RF channel: %u", RF_CHANNEL);
 #endif
 #ifdef IEEE802154_PANID
-  PRINTF("PAN ID: 0x%04X\n", IEEE802154_PANID);
+  log_d("PAN ID: 0x%04X", IEEE802154_PANID);
 #endif
 
-  PRINTF("uIP buffer: %u\n", UIP_BUFSIZE);
-  PRINTF("LL header: %u\n", UIP_LLH_LEN);
-  PRINTF("IP+UDP header: %u\n", UIP_IPUDPH_LEN);
-  PRINTF("REST max chunk: %u\n", REST_MAX_CHUNK_SIZE);
+  log_d("uIP buffer: %u", UIP_BUFSIZE);
+  log_d("LL header: %u", UIP_LLH_LEN);
+  log_d("IP+UDP header: %u", UIP_IPUDPH_LEN);
+  log_d("REST max chunk: %u", REST_MAX_CHUNK_SIZE);
 
   /* Initialize the REST engine. */
   rest_init_engine();
 
+  log_i("Start Erbium CoAP Server success\n");
   /*
    * Bind the resources to their Uri-Path.
    * WARNING: Activating twice only means alternate path, not two instances!
@@ -171,7 +174,7 @@ PROCESS_THREAD(er_example_server, ev, data)
     PROCESS_WAIT_EVENT();
 #if PLATFORM_HAS_BUTTON
     if(ev == sensors_event && data == &button_sensor) {
-      PRINTF("*******BUTTON*******\n");
+       log_d("*******BUTTON*******\n");
 
       /* Call the event_handler for this application-specific event. */
       res_event.trigger();

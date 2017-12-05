@@ -32,6 +32,10 @@
  *     web server's 'sensors' tab
  */
 /*---------------------------------------------------------------------------*/
+#define LOG_TAG              "cetil_6lbr"
+#define LOG_LVL              ELOG_LVL_INFO
+
+#include <elog.h>
 #include "contiki.h"
 #include "contiki-lib.h"
 #include "contiki-net.h"
@@ -178,7 +182,7 @@ PROCESS_THREAD(cetic_6lbr_client_process, ev, data)
 
   PROCESS_BEGIN();
 
-  printf("6LBR Client Process\r\n");
+  log_i("6LBR client process start success");
 
   memset(&dest_addr, 0, sizeof(uip_ipaddr_t));
 

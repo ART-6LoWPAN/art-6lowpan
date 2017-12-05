@@ -19,7 +19,7 @@
 #include <spi_flash_sfud.h>
 #include <partition.h>
 
-#define SOFTWARE_VERSION     "0.12.02"
+#define SOFTWARE_VERSION     "0.12.05"
 
 static uint8_t cpu_usage_major, cpu_usage_minor;
 static rt_uint32_t total_mem, used_mem, max_used_mem;
@@ -139,12 +139,12 @@ void sys_init_thread(void* parameter){
         log_e("File System initialization failed!");
     }
 
-	log_i("Firmware version is %s ", SOFTWARE_VERSION);
-
     extern void contiki_init(void);
     contiki_init();
 
     set_system_status(SYSTEM_STATUS_RUN);
+
+	log_i("System initialize success. Firmware version is %s", SOFTWARE_VERSION);
 }
 
 static void rtt_user_assert_hook(const char* ex, const char* func, rt_size_t line) {
