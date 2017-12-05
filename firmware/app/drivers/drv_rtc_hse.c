@@ -133,9 +133,9 @@ static int RTC_Configuration(void)
         RTC_TimeStructure.RTC_Seconds = 0x00;
         RTC_SetTime(RTC_Format_BIN, &RTC_TimeStructure);
         /* Set the Date */
-        RTC_DateStructure.RTC_Month = RTC_Month_January;
+        RTC_DateStructure.RTC_Month = RTC_Month_December;
         RTC_DateStructure.RTC_Date = 1;
-        RTC_DateStructure.RTC_Year = 16;
+        RTC_DateStructure.RTC_Year = 17;
         RTC_DateStructure.RTC_WeekDay = RTC_Weekday_Friday;
         RTC_SetDate(RTC_Format_BIN, &RTC_DateStructure);
         /* Set initialized complete flag */

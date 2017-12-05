@@ -78,7 +78,7 @@
 #define CONTIKI_SLIP_RAIDO                    0
 #if CONTIKI_SLIP_RAIDO
     #define QUEUEBUF_CONF_NUM                 4
-    #define UIP_CONF_BUFFER_SIZE              512
+    #define UIP_CONF_BUFFER_SIZE              1024
     #undef UIP_CONF_ROUTER
     #define UIP_CONF_ROUTER                   0
     #define CMD_CONF_OUTPUT                   slip_radio_cmd_output
@@ -97,7 +97,7 @@
     #define NETSTACK_CONF_MAC                 csma_driver
     #undef NETSTACK_CONF_RDC
     #define NETSTACK_CONF_RDC                 nullrdc_driver
-    #define UIP_CONF_BUFFER_SIZE              900
+    #define UIP_CONF_BUFFER_SIZE              1024
     #define NBR_TABLE_CONF_MAX_NEIGHBORS      5
     #define UIP_CONF_MAX_ROUTES               5
     #define UIP_CONF_TCP_MSS                  128
@@ -107,7 +107,7 @@
 #define COAP_SERVER_ENABLE                    1
 #define COAP_CLIENT_ENABLE                    0
 #if (COAP_SERVER_ENABLE || COAP_CLIENT_ENABLE)
-	#define REST                              REGISTERED_ENGINE_ERBIUM
+    #define REST                              REGISTERED_ENGINE_ERBIUM
 #endif
 
 #endif /* PROJECT_CONF_H_ */

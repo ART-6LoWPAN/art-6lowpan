@@ -36,6 +36,6 @@
 /* 是否启用原始格式的射频传输测试 */
 #define RAW_RADIO_TEST                 0
 /* Radio 组件日志输出级别 */
-#define RADIO_LOG_LVL                  ELOG_LVL_DEBUG
+#define RADIO_LOG_LVL                  ELOG_LVL_INFO
 
 #endif /* _RADIO_CFG_H_ */
