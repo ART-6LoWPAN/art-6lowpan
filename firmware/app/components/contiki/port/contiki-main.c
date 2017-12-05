@@ -40,6 +40,7 @@
 #include <serial-line-arch.h>
 #include <apps/shell/serial-shell.h>
 #include <apps/shell/shell.h>
+#include <examples/er-rest-example/er-rest-example.h>
 
 #include <stdio.h>
 #include <stdbool.h>
@@ -165,9 +166,14 @@ void contiki_init(void) {
     autostart_start(autostart_processes);
 #endif /* RAW_RADIO_TEST */
 
-    /* start coap */
-//#include <examples/er-rest-example/er-rest-example.h>
-//    process_start(&er_example_client, NULL);
+	/* start coap */
+#if COAP_SERVER_ENABLE
+	process_start(&er_example_server, NULL);
+#endif /* COAP_SERVER_ENABLE */
+
+#if COAP_CLIENT_ENABLE
+	process_start(&er_example_client, NULL);
+#endif /* COAP_CLIENT_ENABLE */
 
     rt_thread_t thread = rt_thread_create("contiki_main", contiki_main_thread_entry, NULL, 2048, RT_THREAD_PRIORITY_MAX - 2, 9);
     if (thread) {

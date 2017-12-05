@@ -65,7 +65,7 @@
 
 /* FIXME: This server address is hard-coded for Cooja and link-local for unconnected border router. */
 //#define SERVER_NODE(ipaddr)   uip_ip6addr(ipaddr, 0xbbbb, 0, 0, 0, 0, 0, 0, 0x100)      /* cooja2 */
-#define SERVER_NODE(ipaddr)   uip_ip6addr(ipaddr, 0xbbbb, 0, 0, 0, 0x4664, 0x1B11, 0xB27B, 0x19ED)
+#define SERVER_NODE(ipaddr)   uip_ip6addr(ipaddr, 0xfe80, 0, 0, 0, 0x0202, 0x0232, 0x3105, 0x3F52)
 #define LOCAL_PORT      UIP_HTONS(COAP_DEFAULT_PORT + 1)
 #define REMOTE_PORT     UIP_HTONS(COAP_DEFAULT_PORT)
 
@@ -81,7 +81,7 @@ static struct etimer et;
 #define NUMBER_OF_URLS 4
 /* leading and ending slashes only for demo purposes, get cropped automatically when setting the Uri-Path */
 char *service_urls[NUMBER_OF_URLS] =
-{ ".well-known/core", "/monitor", "battery/", "error/in//path" };
+{ ".well-known/core", "test/hello", "battery/", "error/in//path" };
 
 /* This function is will be passed to COAP_BLOCKING_REQUEST() to handle responses. */
 void client_chunk_handler(void *response) {
@@ -93,7 +93,7 @@ void client_chunk_handler(void *response) {
 PROCESS_THREAD(er_example_client, ev, data) {
 
     PROCESS_BEGIN();
-    static  char msg[] = {"[23.0,50.0,123.0,100.0,10.0,0.50]"};
+    static  char msg[] = {"hello"};
     static coap_packet_t request[1]; /* This way the packet can be treated as pointer as usual. */
 
 #ifdef auto_find_server
