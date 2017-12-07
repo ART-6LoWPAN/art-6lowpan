@@ -1,4 +1,4 @@
-# ART-6LoWPAN：类 Arduino 的基于 RT-Thread 的 6LoWPAN  开源项目
+# ART-6LoWPAN：基于 RT-Thread 的 6LoWPAN  开源项目
 
 ---
 
@@ -31,17 +31,28 @@
 
 ### 2.1 硬件准备
 
-项目开源的硬件的引脚关系图如下：
+项目开源硬件的引脚关系图如下：
 [![board_pin](https://raw.githubusercontent.com/ART-6LoWPAN/art-6lowpan/master/docs/zh/images/board_pin.jpg)](https://github.com/ART-6LoWPAN/art-6lowpan)
 
 #### 2.1.1 硬件配置
 
-- MCU : STM32F405RGT6
-    - ARM Cortex-M4
-    - 1MB Flash
-    - 192KB RAM
-- RFIC : SI4463 B1
+- MCU :
+    - STM32F405RGT6
+    - ARM Cortex-M4 @168MHz
+    - 1 MB Flash
+    - 192+4 KB SRAM
+- RADIO :
+    - SI4463 B1 
+    - Band : 425-525MHz, Typ 433MHz
+    - SMA/IPX
 - Nor Flash : 128Mb
+- USB-TTL : CP2102
+- Communication Interfaces :
+    - SPI/I2C/CAN
+    - 2 x USART
+- 2 x ADC channel
+- 2 x PWM
+- Debug : Serial wire debug (SWD)
 
 > PS：如果没有使用配套的开发板，也可以手工搭建硬件测试环境，SI4463 无线模块网上很多，项目源码没有对硬件平台做任何限制。温馨提示：手工搭建环境对动手能力要求较高，风险较大，不建议新手尝试。
 
@@ -55,6 +66,8 @@
 - 搭建边界路由运行环境（文档|视频）
 - CoAP 应用开发文档
 
+> 关于射频驱动为什么是 `*.a` 的库文件：我们希望这个开源项目可以得到更多的开发者支持。所以 `* .a` 会在 GitHub Star 超过 **500** 的时候开源。如果觉得这个项目不错，请多多支持我们吧。
+
 ### 2.3 测试环境
 
 请查看下面的说明文档/视频
@@ -63,27 +76,15 @@
 
 ## 3、ART-6LoWPAN 的进展
 
-### 3.1 文档
-
-- [X] 首页说明文档 by [@armink](https://github.com/armink)
-- [ ] 入门文档
-- [ ] 熟悉 Eclipse + GCC 开发环境
-- [ ] 搭建边界路由运行环境
-- [ ] 如何进行无线性能测试
-- [ ] CoAP 应用开发文档
-
-### 3.2 视频
-
-- [ ] 搭建边界路由运行环境
-
-### 3.3 软件
+### 3.1 软件
 
 - [X] 基础功能
     - [X] RT-Thread 3.0 移植 by [@armink](https://github.com/armink)
-    - [X] contiki 移植 by [@armink](https://github.com/armink)
+    - [X] contiki 3.0 移植 by [@armink](https://github.com/armink)
+    - [X] SI4463 射频驱动 by [@armink](https://github.com/armink) [@xidongxu](https://github.com/xidongxu)
     - [X] IAP 升级 by [@armink](https://github.com/armink)
     - [X] 6LoWPAN
-        - [X] 普通节点 by [@armink](https://github.com/armink)
+        - [X] 普通节点 by [@armink](https://github.com/armink) [@xidongxu](https://github.com/xidongxu)
         - [X] 边界路由节点 by [@armink](https://github.com/armink)
         - [X] 边界路由服务器端 by [@armink](https://github.com/armink)
     - [X] CoAP
@@ -93,7 +94,7 @@
     - [X] Eclipse + GCC by [@armink](https://github.com/armink)
     - [X] Eclipse + IAR by [@armink](https://github.com/armink)
     - [X] IAR by [@armink](https://github.com/armink)
-    - [ ] Keil
+    - [ ] Keil by [@armink](https://github.com/armink)
 - [ ] MicroPython
     - [ ] Python 脚本解析
     - [ ] RT-Thread Python IIC 驱动
@@ -101,9 +102,28 @@
 - [ ] 移植 contiki-NG
 - [ ] FOTA
 
-### 3.4 硬件
+### 3.2 硬件
 
 - [X] 引脚关系图 by [@xuminglu1987](https://github.com/xuminglu1987)
-- [ ] 硬件关系表 by [@xuminglu1987](https://github.com/xuminglu1987)
+- [ ] 硬件连接关系表 by [@xuminglu1987](https://github.com/xuminglu1987)
 - [ ] 原理图 by [@xuminglu1987](https://github.com/xuminglu1987)
 - [ ] PCB by [@xuminglu1987](https://github.com/xuminglu1987)
+
+### 3.3 文档
+
+- [X] 首页说明文档 by [@armink](https://github.com/armink)
+- [ ] 入门文档
+    - [ ] 上手指南
+    - [ ] 熟悉 Eclipse + GCC 开发环境
+    - [ ] 常用 MSH shell 命令
+- [ ] 搭建边界路由运行环境
+- [ ] 如何进行无线性能测试
+- [ ] CoAP 应用开发文档
+
+### 3.4 视频
+
+- [ ] 搭建边界路由运行环境
+
+## 4、许可
+
+MIT Copyright (c) [ART-6LoWPAN Development Team](https://github.com/ART-6LoWPAN)
