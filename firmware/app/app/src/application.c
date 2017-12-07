@@ -144,7 +144,7 @@ void sys_init_thread(void* parameter){
 
     set_system_status(SYSTEM_STATUS_RUN);
 
-	log_i("System initialize success. Firmware version is %s", SOFTWARE_VERSION);
+    log_i("System initialize success. Firmware version is %s", SOFTWARE_VERSION);
 }
 
 static void rtt_user_assert_hook(const char* ex, const char* func, rt_size_t line) {
