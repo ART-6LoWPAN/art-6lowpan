@@ -1,32 +1,30 @@
 /*
- * Copyright (c) 2013, Institute for Pervasive Computing, ETH Zurich
- * All rights reserved.
+ * This file is part of the ART-6LoWPAN Radio Library.
  *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in the
- *    documentation and/or other materials provided with the distribution.
- * 3. Neither the name of the Institute nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
+ * Copyright (c) 2017, Armink, <armink.ztl@gmail.com>
+ * Copyright (c) 2017, xidongxu, <xi_dongxu@126.com>
  *
- * THIS SOFTWARE IS PROVIDED BY THE INSTITUTE AND CONTRIBUTORS ``AS IS'' AND
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED.  IN NO EVENT SHALL THE INSTITUTE OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
- * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
- * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
- * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
- * SUCH DAMAGE.
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the
+ * 'Software'), to deal in the Software without restriction, including
+ * without limitation the rights to use, copy, modify, merge, publish,
+ * distribute, sublicense, and/or sell copies of the Software, and to
+ * permit persons to whom the Software is furnished to do so, subject to
+ * the following conditions:
  *
- * This file is part of the Contiki operating system.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+ * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+ * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ * TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+ * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ * Function: Example of get the cpu usage resource.
+ * Created on: 2017-12-08
  */
 
 /**
@@ -54,17 +52,17 @@ RESOURCE(res_cpu_usage,
          NULL);
 
 static void res_get_handler(void *request, void *response, uint8_t *buffer, uint16_t preferred_size, int32_t *offset) {
-	uint8_t length = 0;
-	char usage[10] = { 0 }, usage_major[5] = { 0 }, usage_minor[5] = { 0 };
-	cpu_usage_get(&cpu_usage_major, &cpu_usage_minor);
-	snprintf(usage_major, sizeof(usage_major), "%d", cpu_usage_major);
-	snprintf(usage_minor, sizeof(usage_minor), "%d", cpu_usage_minor);
-	strncat(usage, usage_major, sizeof(usage_major));
-	strncat(usage, ".", strlen("."));
-	strncat(usage, usage_minor, sizeof(usage_minor));
-	memcpy(buffer, usage, sizeof(usage));
-	length = strlen((char *) buffer);
-	REST.set_header_content_type(response, REST.type.TEXT_PLAIN);
-	REST.set_header_etag(response, (uint8_t *) &length, 1);
-	REST.set_response_payload(response, (uint8_t *) buffer, length);
+    uint8_t length = 0;
+    char usage[10] = { 0 }, usage_major[5] = { 0 }, usage_minor[5] = { 0 };
+    cpu_usage_get(&cpu_usage_major, &cpu_usage_minor);
+    snprintf(usage_major, sizeof(usage_major), "%d", cpu_usage_major);
+    snprintf(usage_minor, sizeof(usage_minor), "%d", cpu_usage_minor);
+    strncat(usage, usage_major, sizeof(usage_major));
+    strncat(usage, ".", strlen("."));
+    strncat(usage, usage_minor, sizeof(usage_minor));
+    memcpy(buffer, usage, sizeof(usage));
+    length = strlen((char *) buffer);
+    REST.set_header_content_type(response, REST.type.TEXT_PLAIN);
+    REST.set_header_etag(response, (uint8_t *) &length, 1);
+    REST.set_response_payload(response, (uint8_t *) buffer, length);
 }
