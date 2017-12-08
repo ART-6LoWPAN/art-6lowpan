@@ -1,7 +1,6 @@
 /*
- * This file is part of the ART-6LoWPAN Radio Library.
+ * This file is part of the ART-6LoWPAN.
  *
- * Copyright (c) 2017, Armink, <armink.ztl@gmail.com>
  * Copyright (c) 2017, xidongxu, <xi_dongxu@126.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining
