@@ -4,7 +4,7 @@
 
 ## 1、ART-6LoWPAN 是什么
 
-[ART-6LoWPAN](https://github.com/ART-6LoWPAN) 是一个基于 RT-Thread 的 6LoWPAN 开源项目，有配套的类 Arduino 开发板，软件和硬件都将开源出来。
+[ART-6LoWPAN](https://github.com/ART-6LoWPAN) 是一个基于 [RT-Thread](https://github.com/RT-Thread/rt-thread) 的 6LoWPAN 开源项目，有配套的类 Arduino 开发板，软件和硬件都将开源出来。
 
 **6LoWPAN** (IPv6 over Low-Power Wireless Personal Area Networks) 作为物联网的一种协议方式，已经发展了很多年。使用这项技术后，所有节在点网络层通过 IPv6 联系起来，组网方式更加标准化，极大的方便了上层应用的开发。
 
@@ -63,6 +63,7 @@
 接下来就可以按照下面的文档/视频，进入 6LoWPAN 的世界了
 
 - 入门文档
+    - [上手指南](https://github.com/ART-6LoWPAN/art-6lowpan/tree/master/docs/zh/getting_started_guide.md)
 - 搭建边界路由运行环境（文档|视频）
 - CoAP 应用开发文档
 
@@ -113,7 +114,7 @@
 
 - [X] 首页说明文档 by [@armink](https://github.com/armink)
 - [ ] 入门文档
-    - [ ] 上手指南
+    - [X] 上手指南
     - [ ] 熟悉 Eclipse + GCC 开发环境
     - [ ] 常用 MSH shell 命令
 - [ ] 搭建边界路由运行环境
