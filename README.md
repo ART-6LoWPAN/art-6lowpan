@@ -63,7 +63,7 @@
 接下来就可以按照下面的文档/视频，进入 6LoWPAN 的世界了
 
 - 入门文档
-    - [上手指南](https://github.com/ART-6LoWPAN/art-6lowpan/tree/master/docs/zh/getting_started_guide.md)
+    - [上手指南（**必读**）](https://github.com/ART-6LoWPAN/art-6lowpan/tree/master/docs/zh/getting_started_guide.md)
 - 搭建边界路由运行环境（文档|视频）
 - CoAP 应用开发文档
 
@@ -114,7 +114,7 @@
 
 - [X] 首页说明文档 by [@armink](https://github.com/armink)
 - [ ] 入门文档
-    - [X] 上手指南
+    - [X] 上手指南 by [@armink](https://github.com/armink)
     - [ ] 熟悉 Eclipse + GCC 开发环境
     - [ ] 常用 MSH shell 命令
 - [ ] 搭建边界路由运行环境

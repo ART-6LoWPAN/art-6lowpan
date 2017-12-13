@@ -10,7 +10,7 @@
 
 #### 1.1.1 电源及 USB
 
-开发板可以通过 Micro-USB 或 **5V** 电源供电。使用 Micro-USB 接到电脑时，可以通过串口与开发板连接，通过 shell 命令行进行交互，并且可以完成日志信息的查看。
+开发板可以通过 Micro-USB 或 **5V** 电源供电。使用 Micro-USB 接到电脑时，电脑上虚拟出一个串口。连接该串口后，可以通过 shell 命令行工具进行交互，也可以查看实时的日志信息。
 
 > 如果需要让 STM32 的 USB 直接与电脑连接，可以将电阻 `R8` 与 `R9` 移除，在 `R10` 与 `R7` 位置焊接 0 欧姆电阻即可。
 
@@ -89,7 +89,7 @@ scons --target=keil5
 - 打开 SecureCRT 或者 XShell 这类具有 YModem 功能的终端工具
 - 输入 `update` 命令（bootloader 中和 app 中均可以）
 - 提示需要输入 `Y` 进行确认
-- 选择要下载的 app 固件
+- 通过 YModem 发送待更新的 app 固件
 - 此后，开发板将会自动完成更新
 
 ![iap](https://raw.githubusercontent.com/ART-6LoWPAN/art-6lowpan/master/docs/zh/images/iap.gif)
