@@ -37,7 +37,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "rest-engine.h"
-#include "../er-cpu-temperature.h"
+#include <drv_cpu_temp.h>
 
 static void res_get_handler(void *request, void *response, uint8_t *buffer, uint16_t preferred_size, int32_t *offset);
 
@@ -51,15 +51,14 @@ RESOURCE(res_cpu_temperature,
 static void res_get_handler(void *request, void *response, uint8_t *buffer, uint16_t preferred_size, int32_t *offset) {
     uint8_t length = 0;
     char temperature[10] = { 0 }, temperature_major[5] = { 0 };
-    static uint8_t inited = 0;
-    if (inited == 0) {
-        get_cpu_temperature_init();
-        inited = 1;
-    }
-    snprintf(temperature_major, sizeof(temperature_major), "%d", get_cpu_temperature());
+
+    snprintf(temperature_major, sizeof(temperature_major), "%d", cpu_temp_get());
+
     strncat(temperature, temperature_major, sizeof(temperature_major));
     memcpy(buffer, temperature, sizeof(temperature));
+
     length = strlen((char *) buffer);
+
     REST.set_header_content_type(response, REST.type.TEXT_PLAIN);
     REST.set_header_etag(response, (uint8_t *) &length, 1);
     REST.set_response_payload(response, (uint8_t *) buffer, length);
