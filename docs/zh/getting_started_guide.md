@@ -12,7 +12,7 @@
 
 开发板可以通过 Micro-USB 或 **5V** 电源供电。使用 Micro-USB 接到电脑时，电脑上虚拟出一个串口。连接该串口后，可以通过 shell 命令行工具进行交互，也可以查看实时的日志信息。
 
-> 如果需要让 STM32 的 USB 直接与电脑连接，可以将电阻 `R8` 与 `R9` 移除，在 `R10` 与 `R7` 位置焊接 0 欧姆电阻即可。
+> 温馨提示：如果需要让 STM32 的 USB 直接与电脑连接，可以将电阻 `R8` 与 `R9` 移除，在 `R10` 与 `R7` 位置焊接 0 欧姆电阻即可。
 
 #### 1.1.2 按键
 
@@ -68,16 +68,18 @@ STM32 的 SWD 的调试接口位于上图左下角，需要仿真调试时，将其与仿真器连接即可。
 
 ![enter_source_root](https://raw.githubusercontent.com/ART-6LoWPAN/art-6lowpan/master/docs/zh/images/env_enter_source_code_root_folder.png)
 
+> PS：如果 固件源码根目录 与 ENV 工具不在一个盘符下，记得提前使用 `D:` 类似命令，进入到 固件源码根目录 所在盘符。
+
 如果，需要生成的工程为 IAR，此时需要先修改源码根目录下， `rtconfig.py` 文件顶部的，`EXEC_PATH` 对应的 IAR 的实际安装路径（Keil 也是同理），修改完成后保存。
 
 此时在 ENV 工具中，根据自己实际的 IDE，选择下面两个命令中的一个进行输入，即可生成你想要的 IDE 工程。
 
 ```
 scons --target=iar
-scons --target=keil5
+scons --target=mdk5
 ```
 
-生成后的工程文件名为 `project.*` ，双击打开后，即可执行固件编译。
+生成后的工程文件名为 `project.*` ，位于 ENV 当前进入的目录下。双击打开后，即可执行固件编译。
 
 ## 3、固件下载
 
@@ -85,8 +87,8 @@ scons --target=keil5
 
 如果开发板中已经存在 bootloader 或者 app ，那么可以通过 IAP 方式进行在线升级。
 
-- 将开发板与电脑连接
-- 打开 SecureCRT 或者 XShell 这类具有 YModem 功能的终端工具
+- 将开发板与电脑连接（确保已安装 CP210X 驱动，如果没有可以 [点击这里下载](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)）
+- 打开 SecureCRT 或者 XShell 这类具有 YModem 功能的终端工具，串口配置 `115200 8 1 N`
 - 输入 `update` 命令（bootloader 中和 app 中均可以）
 - 提示需要输入 `Y` 进行确认
 - 通过 YModem 发送待更新的 app 固件
