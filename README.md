@@ -64,7 +64,8 @@
 
 - 入门文档
     - [上手指南（**必读**）](https://github.com/ART-6LoWPAN/art-6lowpan/tree/master/docs/zh/getting_started_guide.md)
-- 搭建边界路由运行环境（文档|视频）
+    - 常用 MSH shell 命令
+- 建立 6LoWPAN 运行环境：边界路由（[文档](https://github.com/ART-6LoWPAN/art-6lowpan/tree/master/docs/zh/build_border_router.md) | 视频）
 - CoAP 应用开发文档
 
 > 关于射频驱动为什么是 `*.a` 的库文件：我们希望这个开源项目可以得到更多的开发者支持。所以 `* .a` 会在 GitHub Star 超过 **500** 的时候开源。如果觉得这个项目不错，请多多支持我们吧。
@@ -117,13 +118,13 @@
     - [X] 上手指南 by [@armink](https://github.com/armink)
     - [ ] 熟悉 Eclipse + GCC 开发环境
     - [ ] 常用 MSH shell 命令
-- [ ] 搭建边界路由运行环境
+- [X] 建立 6LoWPAN 运行环境：边界路由 by [@armink](https://github.com/armink)
 - [ ] 如何进行无线性能测试
 - [ ] CoAP 应用开发文档
 
 ### 3.4 视频
 
-- [ ] 搭建边界路由运行环境
+- [ ] 建立 6LoWPAN 运行环境：边界路由
 
 ## 4、许可
 
