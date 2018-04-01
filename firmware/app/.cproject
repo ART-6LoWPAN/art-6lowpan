@@ -196,16 +196,10 @@
 		</doc-comment-owner>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
-	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
-		<project id="${ProjName}.ilg.gnuarmeclipse.managedbuild.cross.target.elf.802430143" name="Executable"/>
-	</storageModule>
 	<storageModule moduleId="scannerConfiguration">
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		<scannerConfigBuildInfo instanceId="ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1641341280;ilg.gnuarmeclipse.managedbuild.cross.config.elf.debug.1641341280.;ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.1350723331;ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.input.1983383654">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.2121128358;ilg.gnuarmeclipse.managedbuild.cross.config.elf.release.2121128358.;ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.1476569802;ilg.gnuarmeclipse.managedbuild.cross.tool.c.compiler.input.1549061998">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
-		</scannerConfigBuildInfo>
+	</storageModule>
+	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
+		<project id="ART-6LoWPAN.null.642786548" name="ART-6LoWPAN"/>
 	</storageModule>
 </cproject>
