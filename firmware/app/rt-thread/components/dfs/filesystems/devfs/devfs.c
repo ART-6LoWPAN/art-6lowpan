@@ -19,6 +19,7 @@
  *
  * Change Logs:
  * Date           Author       Notes
+ * 2018-02-11     Bernard      Ignore O_CREAT flag in open.
  */
 
 #include <rtthread.h>
@@ -137,9 +138,6 @@ int dfs_device_fs_open(struct dfs_fd *file)
     rt_err_t result;
     rt_device_t device;
 
-    if (file->flags & O_CREAT)
-        return -EINVAL;
-
     /* open root directory */
     if ((file->path[0] == '/') && (file->path[1] == '\0') &&
         (file->flags & O_DIRECTORY))
@@ -150,13 +148,12 @@ int dfs_device_fs_open(struct dfs_fd *file)
         struct device_dirent *root_dirent;
         rt_uint32_t count = 0;
         
-        extern struct rt_object_information rt_object_container[];
-
         /* lock scheduler */
         rt_enter_critical();
 
         /* traverse device object */
-        information = &rt_object_container[RT_Object_Class_Device];
+        information = rt_object_get_information(RT_Object_Class_Device);
+        RT_ASSERT(information != RT_NULL);
         for (node = information->object_list.next; node != &(information->object_list); node = node->next)
         {
             count ++;

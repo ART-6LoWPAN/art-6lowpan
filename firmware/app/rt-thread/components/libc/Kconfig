@@ -8,10 +8,9 @@ config RT_USING_PTHREADS
     bool "Enable pthreads APIs"
     default n
 
-if RT_USING_LIBC
+if RT_USING_LIBC && RT_USING_DFS
     config RT_USING_POSIX
         bool "Enable POSIX layer for poll/select, stdin etc"
-        select RT_USING_DFS
         select RT_USING_DFS_DEVFS
         default y
 
@@ -23,7 +22,17 @@ if RT_USING_LIBC
     config RT_USING_POSIX_TERMIOS
         bool "Enable termios feature"
         default n
+    
+    config RT_USING_POSIX_AIO
+        bool "Enable AIO"
+        default n
     endif
 endif
+
+config HAVE_SYS_SIGNALS
+    bool "Toolchains/libc has sigval/sigevent structure definitions"
+    default n
+    help
+        Toolchains/libc has sigval/sigevent/siginfo_t definitions.
 
 endmenu

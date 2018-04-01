@@ -1,7 +1,7 @@
 /*
  * File      : rtdef.h
  * This file is part of RT-Thread RTOS
- * COPYRIGHT (C) 2006 - 2017, RT-Thread Development Team
+ * COPYRIGHT (C) 2006 - 2018, RT-Thread Development Team
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -32,6 +32,8 @@
  * 2015-02-01     Bernard      change version number to v2.1.0
  * 2017-08-31     Bernard      change version number to v3.0.0
  * 2017-11-30     Bernard      change version number to v3.0.1
+ * 2017-12-27     Bernard      change version number to v3.0.2
+ * 2018-02-24     Bernard      change version number to v3.0.3
  */
 
 #ifndef __RT_DEF_H__
@@ -53,7 +55,7 @@ extern "C" {
 /* RT-Thread version information */
 #define RT_VERSION                      3L              /**< major version number */
 #define RT_SUBVERSION                   0L              /**< minor version number */
-#define RT_REVISION                     1L              /**< revise version number */
+#define RT_REVISION                     3L              /**< revise version number */
 
 /* RT-Thread version */
 #define RTTHREAD_VERSION                ((RT_VERSION * 10000) + \
@@ -359,34 +361,16 @@ typedef struct rt_object *rt_object_t;                  /**< Type for kernel obj
 enum rt_object_class_type
 {
     RT_Object_Class_Thread = 0,                         /**< The object is a thread. */
-#ifdef RT_USING_SEMAPHORE
     RT_Object_Class_Semaphore,                          /**< The object is a semaphore. */
-#endif
-#ifdef RT_USING_MUTEX
     RT_Object_Class_Mutex,                              /**< The object is a mutex. */
-#endif
-#ifdef RT_USING_EVENT
     RT_Object_Class_Event,                              /**< The object is a event. */
-#endif
-#ifdef RT_USING_MAILBOX
     RT_Object_Class_MailBox,                            /**< The object is a mail box. */
-#endif
-#ifdef RT_USING_MESSAGEQUEUE
     RT_Object_Class_MessageQueue,                       /**< The object is a message queue. */
-#endif
-#ifdef RT_USING_MEMHEAP
     RT_Object_Class_MemHeap,                            /**< The object is a memory heap */
-#endif
-#ifdef RT_USING_MEMPOOL
     RT_Object_Class_MemPool,                            /**< The object is a memory pool. */
-#endif
-#ifdef RT_USING_DEVICE
     RT_Object_Class_Device,                             /**< The object is a device */
-#endif
     RT_Object_Class_Timer,                              /**< The object is a timer. */
-#ifdef RT_USING_MODULE
     RT_Object_Class_Module,                             /**< The object is a module. */
-#endif
     RT_Object_Class_Unknown,                            /**< The object is unknown. */
     RT_Object_Class_Static = 0x80                       /**< The object is a static object. */
 };
@@ -467,8 +451,10 @@ typedef struct rt_timer *rt_timer_t;
  * @addtogroup Signal
  */
 #ifdef RT_USING_SIGNALS
+#include <libc/libc_signal.h>
 typedef unsigned long rt_sigset_t;
 typedef void (*rt_sighandler_t)(int signo);
+typedef siginfo_t rt_siginfo_t;
 
 #define RT_SIG_MAX          32
 #endif
@@ -493,11 +479,12 @@ typedef void (*rt_sighandler_t)(int signo);
 #define RT_THREAD_RUNNING               0x03                /**< Running status */
 #define RT_THREAD_BLOCK                 RT_THREAD_SUSPEND   /**< Blocked status */
 #define RT_THREAD_CLOSE                 0x04                /**< Closed status */
-
 #define RT_THREAD_STAT_MASK             0x0f
 
 #define RT_THREAD_STAT_SIGNAL           0x10
 #define RT_THREAD_STAT_SIGNAL_READY     (RT_THREAD_STAT_SIGNAL | RT_THREAD_READY)
+#define RT_THREAD_STAT_SIGNAL_WAIT      0x20
+#define RT_THREAD_STAT_SIGNAL_MASK      0xf0
 
 /**
  * thread control command definitions
@@ -552,8 +539,8 @@ struct rt_thread
 #endif
 
 #if defined(RT_USING_SIGNALS)
-    rt_sigset_t sig_pending;                            /**< the pending signals */
-    rt_sigset_t sig_mask;                               /**< the mask bits of signal */
+    rt_sigset_t     sig_pending;                        /**< the pending signals */
+    rt_sigset_t     sig_mask;                           /**< the mask bits of signal */
 
     void            *sig_ret;                           /**< the return stack pointer from signal */
     rt_sighandler_t *sig_vectors;                       /**< vectors of signal handler */

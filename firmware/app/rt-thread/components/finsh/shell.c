@@ -233,7 +233,7 @@ static void finsh_wait_auth(void)
     rt_size_t cur_pos = 0;
     /* password not set */
     if (rt_strlen(finsh_get_password()) == 0) return;
-    
+
     while (1)
     {
         rt_kprintf("Password for login: ");
@@ -414,7 +414,11 @@ void finsh_thread_entry(void *parameter)
     char ch;
 
     /* normal is echo mode */
+#ifndef FINSH_ECHO_DISABLE_DEFAULT
     shell->echo_mode = 1;
+#else
+    shell->echo_mode = 0;
+#endif
 
 #ifndef FINSH_USING_MSH_ONLY
     finsh_init(&shell->parser);
@@ -541,8 +545,8 @@ void finsh_thread_entry(void *parameter)
             }
         }
 
-        /* handle CR key */
-        if (ch == '\0') continue;
+        /* received null or error */
+        if (ch == '\0' || ch == 0xFF) continue;
         /* handle tab key */
         else if (ch == '\t')
         {
@@ -776,7 +780,7 @@ int finsh_system_init(void)
 
     rt_sem_init(&(shell->rx_sem), "shrx", 0, 0);
     result = rt_thread_init(&finsh_thread,
-                            "tshell",
+                            FINSH_THREAD_NAME,
                             finsh_thread_entry, RT_NULL,
                             &finsh_thread_stack[0], sizeof(finsh_thread_stack),
                             FINSH_THREAD_PRIORITY, 10);

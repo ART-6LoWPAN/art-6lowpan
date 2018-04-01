@@ -227,17 +227,20 @@ static struct udevice_descriptor _dev_desc =
     USB_DYNAMIC,                //bNumConfigurations;
 };
 
-static struct usb_qualifier_descriptor _dev_qualifier =
+//FS and HS needed
+static struct usb_qualifier_descriptor dev_qualifier =
 {
-    sizeof(_dev_qualifier),
-    USB_DESC_TYPE_DEVICEQUALIFIER,
-    0x0200,
-    USB_CLASS_HID,
-    0x00,
-    64,
-    0x01,
+    sizeof(dev_qualifier),          //bLength
+    USB_DESC_TYPE_DEVICEQUALIFIER,  //bDescriptorType
+    0x0200,                         //bcdUSB
+    USB_CLASS_MASS_STORAGE,         //bDeviceClass
+    0x06,                           //bDeviceSubClass
+    0x50,                           //bDeviceProtocol
+    64,                             //bMaxPacketSize0
+    0x01,                           //bNumConfigurations
     0,
 };
+
 
 /* hid interface descriptor */
 const static struct uhid_comm_descriptor _hid_comm_desc =
@@ -486,7 +489,10 @@ static rt_err_t _function_enable(ufunction_t func)
 //
 //    _vcom_reset_state(func);
 //
-    data->ep_out->buffer            = rt_malloc(HID_RX_BUFSIZE);
+    if(data->ep_out->buffer == RT_NULL)
+    {
+        data->ep_out->buffer        = rt_malloc(HID_RX_BUFSIZE);
+    }
     data->ep_out->request.buffer    = data->ep_out->buffer;
     data->ep_out->request.size      = EP_MAXPACKET(data->ep_out);
     data->ep_out->request.req_type  = UIO_REQUEST_READ_BEST;
@@ -628,7 +634,8 @@ ufunction_t rt_usbd_function_hid_create(udevice_t device)
 
     /* create a cdc function */
     func = rt_usbd_function_new(device, &_dev_desc, &ops);
-    rt_usbd_device_set_qualifier(device, &_dev_qualifier);
+    //not support hs
+    //rt_usbd_device_set_qualifier(device, &_dev_qualifier);
 
     /* allocate memory for cdc vcom data */
     data = (struct hid_s*)rt_malloc(sizeof(struct hid_s));
