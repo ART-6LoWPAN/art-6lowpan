@@ -19,7 +19,7 @@
 #include <spi_flash_sfud.h>
 #include <partition.h>
 
-#define SOFTWARE_VERSION     "0.12.05"
+#define SOFTWARE_VERSION     "1.04.01"
 
 static uint8_t cpu_usage_major, cpu_usage_minor;
 static rt_uint32_t total_mem, used_mem, max_used_mem;
@@ -224,7 +224,7 @@ int rt_application_init(void)
                    thread_sys_monitor_prio, 5);
     rt_thread_startup(&thread_sys_monitor);
 
-    thread = rt_thread_create("sys init", sys_init_thread, NULL, 1024, 10, 10);
+    thread = rt_thread_create("sys init", sys_init_thread, NULL, 2048, 10, 10);
     if (thread != NULL) {
         rt_thread_startup(thread);
     }
