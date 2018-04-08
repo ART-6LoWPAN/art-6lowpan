@@ -91,7 +91,7 @@ enum {
     PRINT_UFSR_INVPC,
     PRINT_UFSR_NOCP,
     PRINT_UFSR_UNALIGNED,
-    PRINT_UFSR_DIVBYZERO,
+    PRINT_UFSR_DIVBYZERO0,
     PRINT_DFSR_HALTED,
     PRINT_DFSR_BKPT,
     PRINT_DFSR_DWTTRAP,
@@ -101,7 +101,7 @@ enum {
     PRINT_BFAR,
 };
 
-static const char *print_info[] = {
+static const char * const print_info[] = {
 #if (CMB_PRINT_LANGUAGE == CMB_PRINT_LANGUAGE_ENGLISH)
         [PRINT_FIRMWARE_INFO]         = "Firmware name: %s, hardware version: %s, software version: %s",
         [PRINT_ASSERT_ON_THREAD]      = "Assert on thread %s",
@@ -132,7 +132,7 @@ static const char *print_info[] = {
         [PRINT_UFSR_INVPC]            = "Usage fault is caused by attempts to do an exception with a bad value in the EXC_RETURN number",
         [PRINT_UFSR_NOCP]             = "Usage fault is caused by attempts to execute a coprocessor instruction",
         [PRINT_UFSR_UNALIGNED]        = "Usage fault is caused by indicates that an unaligned access fault has taken place",
-        [PRINT_UFSR_DIVBYZERO]        = "Usage fault is caused by Indicates a divide by zero has taken place (can be set only if DIV_0_TRP is set)",
+        [PRINT_UFSR_DIVBYZERO0]       = "Usage fault is caused by Indicates a divide by zero has taken place (can be set only if DIV_0_TRP is set)",
         [PRINT_DFSR_HALTED]           = "Debug fault is caused by halt requested in NVIC",
         [PRINT_DFSR_BKPT]             = "Debug fault is caused by BKPT instruction executed",
         [PRINT_DFSR_DWTTRAP]          = "Debug fault is caused by DWT match occurred",
@@ -170,7 +170,7 @@ static const char *print_info[] = {
         [PRINT_UFSR_INVPC]            = "发生用法错误，原因：无效的异常返回码",
         [PRINT_UFSR_NOCP]             = "发生用法错误，原因：企图执行协处理器指令",
         [PRINT_UFSR_UNALIGNED]        = "发生用法错误，原因：企图执行非对齐访问",
-        [PRINT_UFSR_DIVBYZERO]        = "发生用法错误，原因：企图执行除 0 操作",
+        [PRINT_UFSR_DIVBYZERO0]       = "发生用法错误，原因：企图执行除 0 操作",
         [PRINT_DFSR_HALTED]           = "发生调试错误，原因：NVIC 停机请求",
         [PRINT_DFSR_BKPT]             = "发生调试错误，原因：执行 BKPT 指令",
         [PRINT_DFSR_DWTTRAP]          = "发生调试错误，原因：数据监测点匹配",
@@ -260,8 +260,10 @@ static void get_cur_thread_stack_info(uint32_t sp, uint32_t *start_addr, size_t 
     *start_addr = (uint32_t) OSTCBCur->OSTCBStkBottom;
     *size = OSTCBCur->OSTCBStkSize * sizeof(OS_STK);
 #elif (CMB_OS_PLATFORM_TYPE == CMB_OS_PLATFORM_UCOSIII)
-    #error "not implemented, I hope you can do this"
-    //TODO 待实现
+    extern OS_TCB *OSTCBCurPtr; 
+    
+    *start_addr = (uint32_t) OSTCBCurPtr->StkBasePtr;
+    *size = OSTCBCurPtr->StkSize * sizeof(CPU_STK_SIZE);
 #elif (CMB_OS_PLATFORM_TYPE == CMB_OS_PLATFORM_FREERTOS)   
     *start_addr = (uint32_t)vTaskStackAddr();
     *size = vTaskStackSize() * sizeof( StackType_t );
@@ -284,8 +286,9 @@ static const char *get_cur_thread_name(void) {
 #endif /* OS_TASK_NAME_SIZE > 0 || OS_TASK_NAME_EN > 0 */
 
 #elif (CMB_OS_PLATFORM_TYPE == CMB_OS_PLATFORM_UCOSIII)
-    #error "not implemented, I hope you can do this"
-    //TODO 待实现
+    extern OS_TCB *OSTCBCurPtr; 
+    
+    return (const char *)OSTCBCurPtr->NamePtr;
 #elif (CMB_OS_PLATFORM_TYPE == CMB_OS_PLATFORM_FREERTOS)
     return vTaskName();
 #endif
@@ -540,8 +543,8 @@ static void fault_diagnosis(void) {
             if (regs.ufsr.bits.UNALIGNED) {
                 cmb_println(print_info[PRINT_UFSR_UNALIGNED]);
             }
-            if (regs.ufsr.bits.DIVBYZERO) {
-                cmb_println(print_info[PRINT_UFSR_DIVBYZERO]);
+            if (regs.ufsr.bits.DIVBYZERO0) {
+                cmb_println(print_info[PRINT_UFSR_DIVBYZERO0]);
             }
         }
     }
