@@ -4,6 +4,9 @@ from building import *
 cwd     = GetCurrentDir()
 # The set of source files associated with this SConscript file.
 src     = Glob('er-rest-example/*.c')
+src    += Glob('er-rest-example/resources/res-hello.c')
+src    += Glob('er-rest-example/resources/res-cpu-temperature.c')
+src    += Glob('er-rest-example/resources/res-cpu-usage.c')
 src    += Glob('ipv6/6lbr/*.c')
 src    += Glob('ipv6/slip-radio/*.c')
 
