@@ -5,6 +5,7 @@
 /settings
 /.settings
 /build
+/packages
 *.old
 *.map
 JLink*.*
@@ -20,3 +21,5 @@ project.*
 *.axf
 *.dep
 *.ewd
+*.ewp
+cconfig.h
