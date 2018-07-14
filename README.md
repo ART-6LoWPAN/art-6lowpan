@@ -107,8 +107,8 @@
 ### 3.2 硬件
 
 - [X] 引脚关系图 by [@xuminglu1987](https://github.com/xuminglu1987)
-- [ ] 硬件连接关系表 by [@xuminglu1987](https://github.com/xuminglu1987)
-- [ ] 原理图 by [@xuminglu1987](https://github.com/xuminglu1987)
+- [x] 硬件连接关系表 by [@xuminglu1987](https://github.com/xuminglu1987)
+- [x] 原理图 by [@xuminglu1987](https://github.com/xuminglu1987)
 - [ ] PCB by [@xuminglu1987](https://github.com/xuminglu1987)
 
 ### 3.3 文档
