@@ -82,7 +82,7 @@ void update(uint8_t argc, char **argv) {
         rt_thread_delay(RT_TICK_PER_SECOND);
         /* save the downloaded firmware crc32 checksum ENV */
         ef_set_env("iap_need_crc32_check", "1");
-        rt_snprintf(c_crc32_checksum, sizeof(c_crc32_checksum), "%ld", crc32_checksum);
+        rt_snprintf(c_crc32_checksum, sizeof(c_crc32_checksum), "%lu", crc32_checksum);
         ef_set_env("iap_crc32_checksum", c_crc32_checksum);
         /* set need copy application from backup section flag is 1, backup application length */
         ef_set_env("iap_need_copy_app", "1");
