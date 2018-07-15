@@ -19,7 +19,7 @@
 #include <spi_flash_sfud.h>
 #include <partition.h>
 
-#define SOFTWARE_VERSION     "1.04.01"
+#define SOFTWARE_VERSION     "1.07.15"
 
 static uint8_t cpu_usage_major, cpu_usage_minor;
 static rt_uint32_t total_mem, used_mem, max_used_mem;
