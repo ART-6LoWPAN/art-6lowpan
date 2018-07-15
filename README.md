@@ -97,9 +97,9 @@
     - [X] Eclipse + IAR by [@armink](https://github.com/armink)
     - [X] IAR by [@armink](https://github.com/armink)
     - [ ] Keil by [@armink](https://github.com/armink)
-- [ ] MicroPython
-    - [ ] Python 脚本解析
-    - [ ] RT-Thread Python IIC 驱动
+- [x] MicroPython
+    - [x] Python 脚本解析
+    - [x] RT-Thread Python IIC 驱动
     - [ ] DHT12 Python 驱动
 - [ ] 移植 contiki-NG
 - [ ] FOTA

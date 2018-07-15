@@ -14,3 +14,4 @@
 
 - `application_6lbr.bin`：普通节点的应用程序固件
 - `application_slip.bin`：边界路由节点的应用程序固件
+- `application_6lbr_micropython.bin`：普通节点并包含 MicroPython 功能的应用程序固件
