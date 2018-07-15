@@ -64,7 +64,7 @@ STM32 的 SWD 的调试接口位于上图左下角，需要仿真调试时，将
 
 #### 2.3.2 生成 IAR/Keil 工程
 
-根据自己系统的情况(32bit or 64bit)，点击 `env.exe` 或 env.bat （注意：某些杀毒软件可能误报，忽略或添加信任即可）。再进入到 ART-6LoWPAN 的固件源码根目录，如下图
+点击 `env.exe` 或 env.bat （注意：某些杀毒软件可能误报，忽略或添加信任即可）。再进入到 ART-6LoWPAN 的固件源码根目录，如下图
 
 ![enter_source_root](images/env_enter_source_code_root_folder.png)
 
