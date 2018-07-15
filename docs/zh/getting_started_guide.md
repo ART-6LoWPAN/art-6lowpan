@@ -4,7 +4,7 @@
 
 ## 1、认识硬件
 
-[![board_pin](https://raw.githubusercontent.com/ART-6LoWPAN/art-6lowpan/master/docs/zh/images/board_pin.jpg)](https://github.com/ART-6LoWPAN/art-6lowpan)
+[![board_pin](images/board_pin.jpg)](https://github.com/ART-6LoWPAN/art-6lowpan)
 
 ### 1.1 外设接口
 
@@ -64,9 +64,9 @@ STM32 的 SWD 的调试接口位于上图左下角，需要仿真调试时，将
 
 #### 2.3.2 生成 IAR/Keil 工程
 
-根据自己系统的情况(32bit or 64bit)，点击 `console_64.exe` 或 `console_32.exe` （注意：某些杀毒软件可能误报，忽略或添加信任即可）。再进入到 ART-6LoWPAN 的固件源码根目录，如下图
+根据自己系统的情况(32bit or 64bit)，点击 `env.exe` 或 env.bat （注意：某些杀毒软件可能误报，忽略或添加信任即可）。再进入到 ART-6LoWPAN 的固件源码根目录，如下图
 
-![enter_source_root](https://raw.githubusercontent.com/ART-6LoWPAN/art-6lowpan/master/docs/zh/images/env_enter_source_code_root_folder.png)
+![enter_source_root](images/env_enter_source_code_root_folder.png)
 
 > PS：如果 固件源码根目录 与 ENV 工具不在一个盘符下，记得提前使用 `D:` 类似命令，进入到 固件源码根目录 所在盘符。
 
@@ -91,10 +91,10 @@ scons --target=mdk5
 - 打开 SecureCRT 或者 XShell 这类具有 YModem 功能的终端工具，串口配置 `115200 8 1 N`
 - 输入 `update` 命令（bootloader 中和 app 中均可以）
 - 提示需要输入 `Y` 进行确认
-- 通过 YModem 发送待更新的 app 固件
+- 通过 YModem 发送待更新的 app 固件（位于`/tools/download_bin`）
 - 此后，开发板将会自动完成更新
 
-![iap](https://raw.githubusercontent.com/ART-6LoWPAN/art-6lowpan/master/docs/zh/images/iap.gif)
+![iap](images/iap.gif)
 
 ### 3.2 J-link 脚本一键下载
 
